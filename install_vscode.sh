@@ -7,4 +7,3 @@ rm -f packages.microsoft.gpg
 apt install apt-transport-https
 apt update
 apt install code
-apt install git-all
