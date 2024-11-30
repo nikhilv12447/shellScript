@@ -39,11 +39,10 @@ function locatePackages(){
 
 ###########################################################
 locatePackages
-installPkg "openjdk-17-jre"
-executeCmd 'java -version'
-executeCmd 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -'
+executeCmd 'java -version && update-java-alternatives --set /usr/lib/jvm/java-1.17.0-openjdk-amd64'
+executeCmd 'wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key'
 executeCmd 'echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | tee /etc/apt/sources.list.d/jenkins.list > /dev/null'
 locatePackages
 installPkg "jenkins"
-
+executeCmd "service jenkins start"
 exit 0
